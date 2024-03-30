@@ -23,8 +23,8 @@
         return (
           <>
             <div style={{ display: "flex" }}>
-              <button style={{ width: "100px", height: "100px" }}>Sort</button>
-              <button style={{ width: "100px", height: "100px" }}>
+              <button style={{ width: "100px", height: "100px" }} onClick={() => sortList(currentList)}>Sort</button>
+              <button style={{ width: "100px", height: "100px" }} onClick={() => filterOdds()}>
                 Filter Odd Numbers
               </button>
             </div>
@@ -33,8 +33,18 @@
             ))}
           </>
         );
-      }
 
+        // Sorting using comparator.
+        function sortList(list){
+          const sortedList = [...list].sort((a,b)=> a-b);
+          setCurrentList(sortedList);
+        }
+        function filterOdds(){
+          const oddList = currentList.filter((item)=> item%2 !== 0);
+          setCurrentList(oddList);
+        }
+      }
+      
       const root = ReactDOM.createRoot(document.getElementById("mydiv"));
       root.render(<App />);
     </script>
